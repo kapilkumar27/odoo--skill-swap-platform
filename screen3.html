@@ -70,102 +70,12 @@
       </div>
     </div>
   </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="screen3.js"></script>
+
 </body>
-<script>
-  function makeTagInput(containerId) {
-    const container = document.getElementById(containerId);
-    const input = container.querySelector('input');
-    const tags = [];
-
-    function renderTags() {
-      // Clear existing tags (except input)
-      container.querySelectorAll('.tag').forEach(tag => tag.remove());
-
-      // Add all tags again
-      tags.forEach((tagText, index) => {
-        const tagEl = document.createElement('span');
-        tagEl.className = 'tag';
-        tagEl.textContent = tagText;
-
-        // Add remove icon
-        const removeBtn = document.createElement('span');
-        removeBtn.textContent = '×';
-        removeBtn.className = 'remove-btn';
-        removeBtn.onclick = () => {
-          tags.splice(index, 1);
-          renderTags();
-        };
-
-        tagEl.appendChild(removeBtn);
-        container.insertBefore(tagEl, input);
-      });
-    }
-
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && input.value.trim() !== '') {
-        e.preventDefault();
-        const newTag = input.value.trim();
-
-        if (!tags.includes(newTag)) {
-          tags.push(newTag);
-          input.value = '';
-          renderTags();
-        }
-      }
-    });
-  }
-
-  // Activate for both fields
-  makeTagInput("skills-offered");
-  makeTagInput("skills-wanted");
-</script>
-<script>
-  function makeTagInput(containerId) {
-    const container = document.getElementById(containerId);
-    const input = container.querySelector('input');
-    const tags = [];
-
-    function renderTags() {
-      // Clear existing tags (except input)
-      container.querySelectorAll('.tag').forEach(tag => tag.remove());
-
-      // Add all tags again
-      tags.forEach((tagText, index) => {
-        const tagEl = document.createElement('span');
-        tagEl.className = 'tag';
-        tagEl.textContent = tagText;
-
-        // Add remove icon
-        const removeBtn = document.createElement('span');
-        removeBtn.textContent = '×';
-        removeBtn.className = 'remove-btn';
-        removeBtn.onclick = () => {
-          tags.splice(index, 1);
-          renderTags();
-        };
-
-        tagEl.appendChild(removeBtn);
-        container.insertBefore(tagEl, input);
-      });
-    }
-
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && input.value.trim() !== '') {
-        e.preventDefault();
-        const newTag = input.value.trim();
-
-        if (!tags.includes(newTag)) {
-          tags.push(newTag);
-          input.value = '';
-          renderTags();
-        }
-      }
-    });
-  }
-
-  // Activate for both fields
-  makeTagInput("skills-offered");
-  makeTagInput("skills-wanted");
-</script>
 </html>
 
