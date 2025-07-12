@@ -7,50 +7,49 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="logo">⚡ SkillSwap</div>
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="#">Swap Request</a>
-      <a href="index.html">Home</a>
-    </div>
-    
-    <div class="vertical-line"></div>
-    <div class="header-actions">
-      <button id="login-btn">Login</button>
-      <img id="user-avatar" src="avatar.png" alt="User">
-      <div id="user-dropdown">
-        <button id="profile-btn">Profile</button>
-        <button id="dropdown-logout-btn">Logout</button>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">⚡ SkillSwap</div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="screen6.html">Swap Request</a>
+        <a href="index.html">Home</a>
+      </div>
+      <div class="vertical-line"></div>
+      <div class="header-actions">
+        <button id="login-btn">Login</button>
+        <img id="user-avatar" src="avatar.png" alt="User" style="display:none;">
+        <div id="user-dropdown" style="display:none;">
+          <button id="profile-btn">Profile</button>
+          <button id="dropdown-logout-btn">Logout</button>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <main>
-  <!-- Filter Bar ABOVE profiles -->
-  <div class="filters-bar">
-    <select id="availability">
-      <option>Availability</option>
-      <option>Available</option>
-      <option>Busy</option>
-    </select>
-    <input type="text" placeholder="Search..." id="search">
-  </div>
+    <!-- Filter Bar ABOVE profiles -->
+    <div class="filters-bar">
+      <select id="availability">
+        <option>Availability</option>
+        <option>Available</option>
+        <option>Busy</option>
+      </select>
+      <input type="text" placeholder="Search..." id="search">
+    </div>
 
-  <section id="profiles-container">
-    <!-- Profile Cards will be rendered here by JavaScript -->
-  </section>
+    <section id="profiles-container">
+      <!-- Profile Cards will be rendered here by JavaScript -->
+    </section>
 
-  <div class="pagination" id="pagination">
-    <!-- Pagination goes here -->
-  </div>
-</main>
+    <div class="pagination" id="pagination">
+      <!-- Pagination goes here -->
+    </div>
+  </main>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>  
-<script src="script.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>  
+  <script src="script.js"></script>
 </body>
 </html>
