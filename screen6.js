@@ -19,24 +19,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Real-time Listener for Requests
   function listenForRequests() {
-  auth.onAuthStateChanged(user => {
-    if (!user) return;
-    db.collection('swap_requests')
-      .where('to', '==', user.uid)
-      .orderBy('timestamp', 'desc')
-      .onSnapshot(async snapshot => {
-        const requests = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-        const senders = await Promise.all(requests.map(req =>
-          db.collection('users').doc(req.from).get().then(senderDoc =>
-            senderDoc.exists ? senderDoc.data() : { name: "Unknown", photoURL: "avatar.png" }
-          )
-        ));
-        allRequests = requests.map((req, i) => ({ ...req, sender: senders[i] }));
-        applyFiltersAndRender();
-      });
-  });
-}
-
+    auth.onAuthStateChanged(user => {
+      if (!user) return;
+      db.collection('swap_requests')
+        .where('to', '==', user.uid)
+        .orderBy('timestamp', 'desc')
+        .onSnapshot(async snapshot => {
+          allRequests = [];
+          for (const doc of snapshot.docs) {
+            const req = doc.data();
+            req.id = doc.id;
+            try {
+              const senderDoc = await db.collection('users').doc(req.from).get();
+              req.sender = senderDoc.exists ? senderDoc.data() : { name: "Unknown", photoURL: "avatar.png" };
+            } catch {
+              req.sender = { name: "Unknown", photoURL: "avatar.png" };
+            }
+            allRequests.push(req);
+          }
+          applyFiltersAndRender();
+        });
+    });
+  }
 
   // Apply Filters and Render
   function applyFiltersAndRender() {
