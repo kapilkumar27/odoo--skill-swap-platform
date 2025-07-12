@@ -1,4 +1,35 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyAGHahrN5eAzzcIp3lb0wyjqWe-AxRDtyU",
+  authDomain: "skill-swap-plat.firebaseapp.com",
+  projectId: "skill-swap-plat",
+  storageBucket: "skill-swap-plat.firebasestorage.app",
+  messagingSenderId: "322475779127",
+  appId: "1:322475779127:web:9880aeadb6bc675abe4bb2"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
 let isLoggedIn = false;
+
+auth.onAuthStateChanged(user => {
+  isLoggedIn = !!user;
+
+  const loginBtn = document.getElementById("login-btn");
+  const logoutBtn = document.getElementById("logout-btn");
+
+  if (user) {
+    // User is logged in
+    if (loginBtn) loginBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+  } else {
+    // User is logged out
+    if (loginBtn) loginBtn.style.display = "inline-block";
+    if (logoutBtn) logoutBtn.style.display = "none";
+  }
+});
+
 
 // Mock profile data
 const profiles = [
@@ -231,9 +262,16 @@ function attachRequestListeners() {
 }
 
 document.getElementById("login-btn").addEventListener("click", () => {
-  isLoggedIn = true;
-  alert("You are now logged in!");
+  window.location.href = "screen2.html";
 });
+
+document.getElementById("logout-btn").addEventListener("click", () => {
+  auth.signOut().then(() => {
+    alert("Logged out!");
+    window.location.reload();
+  });
+});
+
 
 // Initial Render
 renderProfiles(currentPage);
