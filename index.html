@@ -9,7 +9,7 @@
 
 <header>
   <div class="header-bar">
-    <h1>Skill Swap Platform</h1>
+    <h1 class="site-title">Skill Swap Platform</h1>
     <button id="login-btn">Login</button>
   </div>
 
@@ -23,18 +23,25 @@
   </div>
 </header>
 
-
-
   <main>
-    <section id="profiles-container">
-  <!-- Profile Cards will be rendered here by JavaScript -->
-</section>
+  <!-- Filter Bar ABOVE profiles -->
+  <div class="filters-bar">
+    <select id="availability">
+      <option>Availability</option>
+      <option>Available</option>
+      <option>Busy</option>
+    </select>
+    <input type="text" placeholder="Search..." id="search">
+  </div>
 
+  <section id="profiles-container">
+    <!-- Profile Cards will be rendered here by JavaScript -->
+  </section>
 
-    <div class="pagination" id="pagination">
-     <!-- Dynamic pagination will be inserted here by JS -->
-    </div>
-  </main>
+  <div class="pagination" id="pagination">
+    <!-- Pagination goes here -->
+  </div>
+</main>
 
   <script src="script.js"></script>
 </body>
