@@ -172,7 +172,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px; /* space between title row and filters */
+  position: relative;
+  padding: 1rem;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  position: relative; /* This makes dropdown position absolute to this */
+  gap: 12px;
 }
 
 /* No weird space on title */
@@ -232,4 +242,47 @@ header {
 #availability:focus,
 #search:focus {
   border-color: #000;
+}
+
+#user-avatar {
+  display: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 16px;
+  transition: box-shadow 0.2s;
+}
+
+#user-avatar:hover {
+  box-shadow: 0 0 0 2px #007bff;
+}
+
+#user-dropdown {
+  display: none;
+  position: absolute;
+  top: 50px; /* Adjust as needed for your header height */
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 100;
+  min-width: 140px;
+}
+
+#user-dropdown button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 10px 20px;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#user-dropdown button:hover {
+  background: #f0f0f0;
 }

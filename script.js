@@ -1,3 +1,4 @@
+// ==== Firebase Initialization ====
 const firebaseConfig = {
   apiKey: "AIzaSyAGHahrN5eAzzcIp3lb0wyjqWe-AxRDtyU",
   authDomain: "skill-swap-plat.firebaseapp.com",
@@ -6,32 +7,68 @@ const firebaseConfig = {
   messagingSenderId: "322475779127",
   appId: "1:322475779127:web:9880aeadb6bc675abe4bb2"
 };
-
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
 let isLoggedIn = false;
 
-auth.onAuthStateChanged(user => {
+// ==== DOM Elements ====
+const loginBtn = document.getElementById("login-btn");
+const avatar = document.getElementById("user-avatar");
+const dropdown = document.getElementById("user-dropdown");
+const profileBtn = document.getElementById("profile-btn");
+const dropdownLogoutBtn = document.getElementById("dropdown-logout-btn");
+
+// ==== Auth State & Avatar/Dropdown Logic ====
+auth.onAuthStateChanged(async user => {
   isLoggedIn = !!user;
-
-  const loginBtn = document.getElementById("login-btn");
-  const logoutBtn = document.getElementById("logout-btn");
-
   if (user) {
-    // User is logged in
+    // Fetch user photoURL from Firestore
+    const doc = await db.collection('users').doc(user.uid).get();
+    let photoURL = 'avatar.png';
+    if (doc.exists && doc.data().photoURL) {
+      photoURL = doc.data().photoURL;
+    }
+    avatar.src = photoURL;
+    avatar.style.display = "inline-block";
     if (loginBtn) loginBtn.style.display = "none";
-    if (logoutBtn) logoutBtn.style.display = "inline-block";
   } else {
-    // User is logged out
+    avatar.style.display = "none";
+    dropdown.style.display = "none";
     if (loginBtn) loginBtn.style.display = "inline-block";
-    if (logoutBtn) logoutBtn.style.display = "none";
   }
 });
 
+// Toggle dropdown on avatar click
+avatar.addEventListener("click", (e) => {
+  e.stopPropagation();
+  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+});
 
-// Mock profile data
+// Hide dropdown when clicking outside
+document.addEventListener("click", () => {
+  dropdown.style.display = "none";
+});
+
+// Profile button: Go to profile page
+profileBtn.addEventListener("click", () => {
+  window.location.href = "screen3.html"; // Change if your profile page is named differently
+});
+
+// Logout button: Sign out and reload
+dropdownLogoutBtn.addEventListener("click", () => {
+  auth.signOut().then(() => {
+    window.location.reload();
+  });
+});
+
+// Login button event
+loginBtn.addEventListener("click", () => {
+  window.location.href = "screen2.html"; // Your login page
+});
+
+// ==== Profile Cards Logic (Mock Data) ====
 const profiles = [
   {
     name: "Marc Demo",
@@ -198,29 +235,27 @@ function renderProfiles(page) {
     profileCard.className = "profile-card";
 
     profileCard.innerHTML = `
-  <div class="profile-left">
-    <div class="profile-photo">
-      <img src="${profile.photoURL || 'https://via.placeholder.com/80'}" alt="${profile.name}">
-    </div>
-    <div>
-      <h2>${profile.name}</h2>
-      <div class="skills">
-        <span class="label">Skills Offered =></span>
-        ${profile.skillsOffered.map(skill => `<span class="skill">${skill}</span>`).join('')}
+      <div class="profile-left">
+        <div class="profile-photo">
+          <img src="${profile.photoURL || 'https://via.placeholder.com/80'}" alt="${profile.name}">
+        </div>
+        <div>
+          <h2>${profile.name}</h2>
+          <div class="skills">
+            <span class="label">Skills Offered =></span>
+            ${profile.skillsOffered.map(skill => `<span class="skill">${skill}</span>`).join('')}
+          </div>
+          <div class="skills">
+            <span class="label">Skill Wanted =></span>
+            ${profile.skillsWanted.map(skill => `<span class="skill">${skill}</span>`).join('')}
+          </div>
+        </div>
       </div>
-      <div class="skills">
-        <span class="label">Skill Wanted =></span>
-        ${profile.skillsWanted.map(skill => `<span class="skill">${skill}</span>`).join('')}
+      <div class="profile-right">
+        <button class="request-btn">Request</button>
+        <div class="rating">Rating: ${profile.rating}/5</div>
       </div>
-    </div>
-  </div>
-  <div class="profile-right">
-    <button class="request-btn">Request</button>
-    <div class="rating">Rating: ${profile.rating}/5</div>
-  </div>
-`;
-
-
+    `;
     container.appendChild(profileCard);
   });
 
@@ -260,22 +295,6 @@ function attachRequestListeners() {
     });
   });
 }
-
-document.getElementById("login-btn").addEventListener("click", () => {
-  window.location.href = "screen2.html";
-});
-
-document.getElementById("profile-btn").addEventListener("click", () => {
-  window.location.href = "screen3.html";
-});
-
-document.getElementById("logout-btn").addEventListener("click", () => {
-  auth.signOut().then(() => {
-    alert("Logged out!");
-    window.location.reload();
-  });
-});
-
 
 // Initial Render
 renderProfiles(currentPage);
