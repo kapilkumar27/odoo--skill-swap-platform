@@ -3,16 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - Skill Swap</title>
+  <title>Login</title>
   <link rel="stylesheet" href="screen2.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+    <!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">⚡ SkillSwap</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#">Swap Request</a>
+      <a href="index.html">Home</a>
+    </div>
+    <div class="vertical-line"></div>
+    <img src="avatar.png" alt="User" class="nav-avatar">
+  </div>
+</nav>
+<main>
   <div class="login-container">
-    <header>
-      <div class="title">Skill Swap Platform</div>
-      <button class="home-button">Home</button>
-    </header>
-
     <form id="loginForm">
       <label for="email">Email</label>
       <input type="email" id="email" required />
@@ -25,7 +34,7 @@
       <a href="#" class="forgot-link">Forgot username/password</a>
     </form>
   </div>
-
+</main>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="screen2.js"></script>
