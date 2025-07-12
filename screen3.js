@@ -128,3 +128,38 @@ document.querySelector('.photo-actions button').addEventListener('click', () => 
 document.querySelector('.photo-actions .remove').addEventListener('click', () => {
   document.querySelector('.nav-avatar').src = 'avatar.png';
 });
+
+const profileAvatar = document.getElementById("profile-avatar");
+const profileDropdown = document.getElementById("profile-dropdown");
+const profileLogoutBtn = document.getElementById("profile-logout-btn");
+
+// Show/hide dropdown on avatar click
+profileAvatar.addEventListener("click", (e) => {
+  e.stopPropagation();
+  profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
+});
+
+// Hide dropdown when clicking outside
+document.addEventListener("click", () => {
+  profileDropdown.style.display = "none";
+});
+
+// Logout button
+profileLogoutBtn.addEventListener("click", () => {
+  auth.signOut().then(() => {
+    window.location.href = "screen2.html"; // Redirect to login page after logout
+  });
+});
+
+// Optional: Show user's avatar from Firestore
+auth.onAuthStateChanged(async user => {
+  if (user) {
+    const doc = await db.collection('users').doc(user.uid).get();
+    let photoURL = 'avatar.png';
+    if (doc.exists && doc.data().photoURL) {
+      photoURL = doc.data().photoURL;
+    }
+    profileAvatar.src = photoURL;
+  }
+});
+

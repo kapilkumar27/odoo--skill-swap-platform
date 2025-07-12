@@ -222,3 +222,51 @@ input:focus, select:focus {
   background-color: #f44336;
   color: white;
 }
+
+.profile-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#profile-avatar {
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 12px;
+  transition: box-shadow 0.2s;
+}
+
+#profile-avatar:hover {
+  box-shadow: 0 0 0 2px #007bff;
+}
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  top: 46px; /* just below avatar */
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 100;
+  min-width: 120px;
+}
+
+.profile-dropdown button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 10px 20px;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.profile-dropdown button:hover {
+  background: #f0f0f0;
+}
