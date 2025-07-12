@@ -265,6 +265,10 @@ document.getElementById("login-btn").addEventListener("click", () => {
   window.location.href = "screen2.html";
 });
 
+document.getElementById("profile-btn").addEventListener("click", () => {
+  window.location.href = "screen3.html";
+});
+
 document.getElementById("logout-btn").addEventListener("click", () => {
   auth.signOut().then(() => {
     alert("Logged out!");
