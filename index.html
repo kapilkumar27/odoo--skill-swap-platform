@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Swap Platform</title>
+  <link rel="stylesheet" href="screen1.css">
+</head>
+<body>
+
+  <header>
+    <h1>Skill Swap Platform</h1>
+    <div class="top-bar">
+      <select id="availability">
+        <option>Availability</option>
+        <option>Available</option>
+        <option>Busy</option>
+      </select>
+      <input type="text" placeholder="Search..." id="search">
+      <button id="login-btn">Login</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="profiles-container">
+      <!-- Profile Cards -->
+      <div class="profile-card">
+        <div class="profile-left">
+          <div class="profile-photo">Profile Photo</div>
+          <div>
+            <h2>Ashish Singh</h2>
+            <div class="skills">
+              <span class="label">Skills Offered =></span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">Python</span>
+            </div>
+            <div class="skills">
+              <span class="label">Skill Wanted =></span>
+              <span class="skill">Graphic Designer</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-right">
+          <button class="request-btn">Request</button>
+          <div class="rating">Rating: 3.9/5</div>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-left">
+          <div class="profile-photo">Profile Photo</div>
+          <div>
+            <h2>Radhika Sharma</h2>
+            <div class="skills">
+              <span class="label">Skills Offered =></span>
+              <span class="skill">Python</span>
+              <span class="skill">Graphic Designer</span>
+            </div>
+            <div class="skills">
+              <span class="label">Skill Wanted =></span>
+              <span class="skill">UI/UX</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-right">
+          <button class="request-btn">Request</button>
+          <div class="rating">Rating: 2.5/5</div>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-left">
+          <div class="profile-photo">Profile Photo</div>
+          <div>
+            <h2>Divyansh Raj</h2>
+            <div class="skills">
+              <span class="label">Skills Offered =></span>
+              <span class="skill">NodeJS</span>
+              <span class="skill">Graphic Designer</span>
+            </div>
+            <div class="skills">
+              <span class="label">Skill Wanted =></span>
+              <span class="skill">Python</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-right">
+          <button class="request-btn">Request</button>
+          <div class="rating">Rating: 4.0/5</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pagination">
+      <span>&lt;</span>
+      <span class="active">1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span>5</span>
+      <span>6</span>
+      <span>7</span>
+      <span>&gt;</span>
+    </div>
+  </main>
+
+  <script src="screen1.js"></script>
+</body>
+</html>
