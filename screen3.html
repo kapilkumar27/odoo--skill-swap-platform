@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">⚡ SkillSwap</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#">Swap Request</a>
+      <a href="index.html">Home</a>
+    </div>
+    <div class="vertical-line"></div>
+    <img src="avatar.png" alt="User" class="nav-avatar">
+  </div>
+</nav>
+
+  <!-- Main Profile Container -->
+  <div class="profile-container">
+    <div class="action-bar">
+      <button class="btn save">Save</button>
+      <button class="btn discard">Discard</button>
+    </div>
+
+    <div class="profile-box">
+      <!-- Left Form -->
+      <div class="left">
+        <label>Name
+          <input type="text" placeholder="Your name" />
+        </label>
+        <label>Location
+          <input type="text" placeholder="Your city" />
+        </label>
+        <label>Skills Offered
+          <div class="tags-input" id="skills-offered">
+            <input type="text" placeholder="Add skill" />
+          </div>
+        </label>
+        <label>Availability
+          <input type="text" placeholder="e.g. weekends" />
+        </label>
+        <label>Profile
+          <select>
+            <option>Public</option>
+            <option>Private</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Right Profile -->
+      <div class="right">
+        <div class="photo-box">
+          <p class="photo-label">📷 Profile Photo</p>
+          <div class="photo-actions">
+            <button>Add/Edit</button>
+            <button class="remove">Remove</button>
+          </div>
+        </div>
+        <label>Skills Wanted
+          <div class="tags-input" id="skills-wanted">
+            <input type="text" placeholder="Add skill" />
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  function makeTagInput(containerId) {
+    const container = document.getElementById(containerId);
+    const input = container.querySelector('input');
+    const tags = [];
+
+    function renderTags() {
+      // Clear existing tags (except input)
+      container.querySelectorAll('.tag').forEach(tag => tag.remove());
+
+      // Add all tags again
+      tags.forEach((tagText, index) => {
+        const tagEl = document.createElement('span');
+        tagEl.className = 'tag';
+        tagEl.textContent = tagText;
+
+        // Add remove icon
+        const removeBtn = document.createElement('span');
+        removeBtn.textContent = '×';
+        removeBtn.className = 'remove-btn';
+        removeBtn.onclick = () => {
+          tags.splice(index, 1);
+          renderTags();
+        };
+
+        tagEl.appendChild(removeBtn);
+        container.insertBefore(tagEl, input);
+      });
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && input.value.trim() !== '') {
+        e.preventDefault();
+        const newTag = input.value.trim();
+
+        if (!tags.includes(newTag)) {
+          tags.push(newTag);
+          input.value = '';
+          renderTags();
+        }
+      }
+    });
+  }
+
+  // Activate for both fields
+  makeTagInput("skills-offered");
+  makeTagInput("skills-wanted");
+</script>
+<script>
+  function makeTagInput(containerId) {
+    const container = document.getElementById(containerId);
+    const input = container.querySelector('input');
+    const tags = [];
+
+    function renderTags() {
+      // Clear existing tags (except input)
+      container.querySelectorAll('.tag').forEach(tag => tag.remove());
+
+      // Add all tags again
+      tags.forEach((tagText, index) => {
+        const tagEl = document.createElement('span');
+        tagEl.className = 'tag';
+        tagEl.textContent = tagText;
+
+        // Add remove icon
+        const removeBtn = document.createElement('span');
+        removeBtn.textContent = '×';
+        removeBtn.className = 'remove-btn';
+        removeBtn.onclick = () => {
+          tags.splice(index, 1);
+          renderTags();
+        };
+
+        tagEl.appendChild(removeBtn);
+        container.insertBefore(tagEl, input);
+      });
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && input.value.trim() !== '') {
+        e.preventDefault();
+        const newTag = input.value.trim();
+
+        if (!tags.includes(newTag)) {
+          tags.push(newTag);
+          input.value = '';
+          renderTags();
+        }
+      }
+    });
+  }
+
+  // Activate for both fields
+  makeTagInput("skills-offered");
+  makeTagInput("skills-wanted");
+</script>
+</html>
+
