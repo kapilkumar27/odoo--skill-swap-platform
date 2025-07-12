@@ -162,7 +162,7 @@ function attachRequestListeners() {
       if (!isLoggedIn) {
         alert("Please login to send a request.");
       } else {
-        alert("Request sent!");
+        window.location.href = "screen4.html";
       }
     });
   });
