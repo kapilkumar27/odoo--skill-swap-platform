@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Swap Requests</title>
+  <link rel="stylesheet" href="screen6.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">⚡ Skill Swap Platform</div>
+    <nav>
+      <a href="#">Home</a>
+      <img src="https://i.pravatar.cc/40" alt="User" class="avatar" />
+    </nav>
+  </header>
+
+  <main class="requests-container">
+   <div class="filter-bar">
+  <select id="statusFilter">
+    <option>Pending</option>
+    <option>Accepted</option>
+    <option>Rejected</option>
+  </select>
+  <input type="text" placeholder="Search by name or skill" id="searchBox" />
+  <button class="search-btn">Search</button>
+</div>
+
+</div>
+
+
+    <!-- Request Cards -->
+    <div class="request-card">
+      <div class="card-left">
+        <div class="profile-pic">Profile Photo</div>
+        <div class="user-info">
+          <h3>Marc Demo</h3>
+          <p><span class="label">Skills Offered</span> <button class="tag">JavaScript</button></p>
+          <p><span class="label">Skills Wanted</span> <button class="tag blue">Photoshop</button></p>
+          <p class="rating">Rating: 3.9/5</p>
+        </div>
+      </div>
+
+      <div class="card-right">
+        <p class="status">Status: <span class="pending">Pending</span></p>
+        <div class="actions">
+          <button class="accept-btn">Accept</button>
+          <button class="reject-btn">Reject</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="request-card">
+      <div class="card-left">
+        <div class="profile-pic">Profile Photo</div>
+        <div class="user-info">
+          <h3>name</h3>
+          <p><span class="label">Skills Offered</span> <button class="tag">Skill A</button></p>
+          <p><span class="label">Skills Wanted</span> <button class="tag blue">Skill B</button></p>
+          <p class="rating">Rating: 3.9/5</p>
+        </div>
+      </div>
+
+      <div class="card-right">
+        <p class="status">Status: <span class="rejected">Rejected</span></p>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+  <button class="page-btn" id="prevBtn">&lt;</button>
+  <button class="page-btn page-number active">1</button>
+  <button class="page-btn page-number">2</button>
+  <button class="page-btn page-number">3</button>
+  <button class="page-btn" id="nextBtn">&gt;</button>
+</div>
+
+  </main>
+
+  <script src="screen6.js"></script>
+</body>
+</html>
