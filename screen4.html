@@ -47,6 +47,37 @@
     </div>
   </main>
 
+  <!-- Swap Request Modal -->
+<div class="modal" id="swapModal">
+  <div class="modal-content">
+    <h2>Send Swap Request</h2>
+
+    <label for="offeredSkill">Choose one of your offered skills</label>
+    <select id="offeredSkill">
+      <option disabled selected>Select your skill</option>
+      <option>Web Development</option>
+      <option>Design</option>
+      <option>Writing</option>
+    </select>
+
+    <label for="wantedSkill">Choose one of their wanted skills</label>
+    <select id="wantedSkill">
+      <option disabled selected>Select their skill</option>
+      <option>Marketing</option>
+      <option>Public Speaking</option>
+      <option>SEO</option>
+    </select>
+
+    <label for="message">Message</label>
+    <textarea id="message" placeholder="Write a message..."></textarea>
+
+    <div class="modal-buttons">
+      <button class="submit-btn">Submit</button>
+      <button class="cancel-btn" id="closeModal">Cancel</button>
+    </div>
+  </div>
+</div>
+
   <script src="screen4.js"></script>
 </body>
 </html>
